@@ -1,0 +1,41 @@
+// Variable & Mixin
+$margin: 1.5em;
+$bgcolor: #FFFFFF;
+$text:  #404040;
+$link:  #336699;
+$vlink: #336666;
+$alink: #CC0000;
+$hcolor: #336600;
+$bordercolor: #CCCCCC;
+$default-border-radius: 4px;
+$default-box-shadow-color: rgba(0,0,0,0.2);
+$default-box-shadow-blur: 3px;
+$default-text-shadow-color: rgba(0,0,0,0.2);
+$default-text-shadow-h-offset: 1px;
+$default-text-shadow-v-offset: 1px;
+
+
+@mixin max-width( $mwsize: 100% ) {
+	max-width: $mwsize;
+}
+
+@mixin font-size ( $fontsize: 1 ) {
+	font-size: $fontsize*16px;
+	font-size: $fontsize*1.6rem;
+}
+
+$btn-text: #333333;
+$btn-bgcolor: #eeeeee;
+$btn-bgcolor-hover: lighten($btn-bgcolor, 2%);
+@mixin form-elements {
+	border: 1px solid $bordercolor;
+	@include border-radius;
+	padding: 0.25em 0.5em;
+}
+
+@mixin roundbox {
+	background-color: $bgcolor;
+	border: 1px solid $bordercolor !important;
+	@include border-radius;
+	@include single-box-shadow;
+}

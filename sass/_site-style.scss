@@ -1,0 +1,509 @@
+/* =Global
+----------------------------------------------- */
+/* Links */
+a {
+	@include hover-link;
+	@include link-colors($link, $alink, $alink, $link, $alink);
+	&:focus {
+		outline: thin dotted;
+	}
+	&:hover,
+	&:active {
+		outline: 0;
+	}
+	
+	.entry-content & {
+		@include link-colors($link, $alink, $alink, $vlink, $alink);
+	}
+	.site-title &,
+	.comment-meta & {
+		@include link-colors($text, $alink, $alink, $text, $alink);
+	}
+	.page-title & {
+		@include link-colors($hcolor, $alink, $alink, $hcolor, $alink);
+	}
+	.entry-meta & {
+		@include link-colors(lighten($text, 30%), $alink, $alink, lighten($text, 30%), $alink);
+	}
+}
+
+/* body */
+body {
+}
+
+/* =Layout
+----------------------------------------------- */
+.site {
+	max-width: 900px;
+	margin: $margin auto;
+	background-color: $bgcolor;
+	padding: 30px;
+}
+.site-header {
+	margin-bottom: $margin;
+}
+.content-area {
+	float: left;
+	margin: 0 -282px 0 0;
+	width: 100%;
+}
+.site-content {
+	margin: 0 310px 0 0;
+}
+.site-main .widget-area {
+	float: right;
+	overflow: hidden;
+	width: 250px;
+	@include roundbox;
+	padding: 15px;
+	background-color: darken($bgcolor, 5%);
+	@include font-size(0.8);
+}
+.site-footer {
+	clear: both;
+	margin-top: $margin;
+	@include roundbox;
+	padding: 15px;
+	background-color: darken($bgcolor, 5%);
+	@include font-size(0.75);
+	color: lighten($text, 20%);
+}
+
+@media screen and (max-width: 600px) {
+	.site {
+		margin: 15px auto;
+	}
+	.content-area {
+		float: none;
+		margin: 0;
+	}
+	.site-content {
+		margin: 0;
+	}
+	.site-main .widget-area {
+		float: none;
+		overflow: auto;
+		width: auto;
+/*
+		@include roundbox;
+		padding: 15px;
+		background-color: darken($bgcolor, 5%);
+		@include font-size(0.8);
+*/
+	}
+}
+
+/* =Masthead
+----------------------------------------------- */
+
+.site-title {
+	margin-bottom: 5px;
+}
+.site-description {
+	font-weight: normal;
+	@include font-size;
+	margin-bottom: $margin;
+}
+
+/* =Menu
+----------------------------------------------- */
+
+.navigation-main {
+	clear: both;
+	display: block;
+	width: 100%;
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+		@extend .clear;
+		@include roundbox;
+		background-color: darken($bgcolor, 5%);
+
+		li {
+			float: left;
+			position: relative;
+			&:hover > ul {
+				display: block;
+			}
+		}
+
+		a {
+			padding: 0.2em 0.245em;
+			display: block;
+			text-decoration: none;
+			border-right: solid 1px $bordercolor;
+			@include single-box-shadow(white, 1px, 0px, 0, 0);
+		}
+		ul {
+			display: none;
+			float: left;
+			position: absolute;
+			top: 1.9em;
+			left: -1px;
+			z-index: 99999;
+			@include border-radius(0);
+
+			li {
+				border-bottom: solid 1px $bordercolor;
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+
+			a {
+				width: 200px;
+				border-right: none;
+				@include single-box-shadow(white, 0, 0px, 0, 0);
+			}
+
+			ul {
+				left: 100%;
+				top: 0;
+			}
+		}
+
+		li[class*="current"] > a {
+			color: $text;
+		}
+	}
+
+}
+
+/* Small menu */
+.menu-toggle {
+	display: none;
+	cursor: pointer;
+}
+
+.main-small-navigation ul {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.menu-toggle,
+	.main-small-navigation ul.nav-menu.toggled-on {
+		display: block;
+	}
+
+	.navigation-main ul {
+		display: none;
+	}
+
+	.menu-toggle {
+		@include font-size;
+		font-weight: normal;
+		text-align: center;
+		margin-bottom: 0;
+	}
+	
+	.main-small-navigation {
+		ul {
+			list-style-type: none;
+			margin-left: 0;
+			border: solid 1px $bordercolor;
+			background-color: darken($bgcolor, 2%);
+
+			li {
+				padding: 0.25em 0.5em;
+				border-bottom: solid 1px $bordercolor;
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+}
+
+/* =Content
+----------------------------------------------- */
+.sticky {
+	@include roundbox;
+	padding: $margin;
+}
+.hentry {
+	margin: 0 0 $margin;
+	border-bottom: double 4px $bordercolor;
+	padding-bottom: $margin;
+	body.page & {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+}
+.page-header {
+	margin-bottom: $margin*2;
+	border-bottom: double 4px $bordercolor;
+	padding-bottom: $margin;
+}
+.page-title {
+	color: $hcolor;
+	@include single-text-shadow;
+	letter-spacing: 0.1em;
+}
+.taxonomy-description {
+	font-size: 80%;
+}
+
+.entry-header {
+	margin-bottom: $margin*2;
+}
+.entry-title {
+	@include single-text-shadow;
+	letter-spacing: 0.1em;
+}
+
+.entry-meta {
+	font-size: 80%;
+	color: lighten($text, 30%);
+	margin-top: $margin*2;
+	.entry-header & {
+		margin-top: 0.5em;
+		text-align: right;
+	}
+}
+
+.byline {
+	display: none;
+}
+.single .byline,
+.group-blog .byline {
+	display: inline;
+}
+.entry-content,
+.entry-summary {
+	margin: $margin 0;
+	@extend .clear;
+}
+.page-links {
+	clear: both;
+	margin: 0 0 $margin;
+}
+
+/* =Asides
+----------------------------------------------- */
+
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
+	display: none;
+}
+
+
+/* =Media
+----------------------------------------------- */
+
+.comment-content img.wp-smiley {
+	border: none;
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 0;
+}
+
+/* Make sure embeds and iframes fit their containers */
+embed,
+iframe,
+object {
+	@include max-width;
+}
+
+
+/* =Navigation
+----------------------------------------------- */
+
+.site-content [class*="navigation"] {
+	@include font-size(0.75);
+	margin-top: $margin*2;
+	overflow: hidden;
+	@extend .clear;
+	.nav-previous {
+		float: left;
+		width: 50%;
+	}
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+	a {
+		display: inline-block;
+		@include border-radius(18px);
+		border: solid 1px $bordercolor;
+		padding: 5px 10px;
+		background-color: white;
+	}
+}
+
+/* =Comments
+----------------------------------------------- */
+.comments-area {
+	margin-top: $margin*2;
+	@include font-size(0.75);
+	body.page & {
+		border-top: double 4px $bordercolor;
+		padding-top: $margin;
+	}
+}
+.comments-title,
+#reply-title {
+	@include font-size;
+}
+.comment-list {
+	list-style-type: none;
+	margin-left: 0;
+
+	.children {
+		list-style-type: none;
+		margin-left: 60px;
+		.comment {
+			margin-top: 10px;
+		}
+	}
+	
+	.depth-1, .pingback {
+		border-bottom: dashed 1px $bordercolor;
+		padding: $margin 0;
+	}
+
+	.pingback {
+		p {
+			margin: 0;
+		}
+	}
+
+	.comment {
+		@extend .clear;
+		
+		.comment-author {
+			font-weight: bold;
+		}
+
+		.avatar {
+			float: left;
+			margin-right: 10px;
+			border: solid 1px $bordercolor;
+			padding: 4px;
+			background-color: white;
+			@include border-radius;
+		}
+		.fn {
+			font-style: normal;
+		}
+		.comment-meta, .comment-content, .reply {
+			overflow: hidden;
+		}
+		.comment-content {
+			margin-top: 5px;
+			h1 {
+				@include font-size(1.8*0.75);
+			}
+			h2 {
+				@include font-size(1.6*0.75);
+			}
+			h3 {
+				@include font-size(1.4*0.75);
+			}
+			h4 {
+				@include font-size(1.2*0.75);
+			}
+			h5 {
+				@include font-size(1.1*0.75);
+			}
+		}
+		.comment-content > *:last-child {
+			margin-bottom: 0;
+		}
+		.reply {
+			margin-top: 5px;
+			margin-left: 60px;
+			a {
+				display: inline-block;
+				@include border-radius;
+				border: solid 1px $bordercolor;
+				padding: 0.25em 0.5em;
+				background-color: white;
+			}
+		}
+	}
+
+}
+
+.comment-content a {
+	word-wrap: break-word;
+}
+.bypostauthor {
+	background-color: lighten(#ffffcc, 6%);
+}
+
+#respond {
+	margin-top: $margin*2;
+}
+.required {
+	color: #CC0000;
+	font-weight: bold;
+}
+#commentform {
+	label {
+		display: block;
+	}
+	input[type="text"] {
+		width: 50%;
+	}
+	textarea {
+		width: 95%;
+	}
+}
+
+/* =Widgets
+----------------------------------------------- */
+.widget-area {
+
+	li {
+		margin-bottom: 0.25em;
+		ul, ol {
+			margin-top: 0.25em;
+		}
+	}
+
+	.widget {
+		margin: 0 0 $margin;
+		border-bottom: solid 1px $bordercolor;
+		padding-bottom: $margin;
+		@include single-box-shadow(white, 0px, 1px, 0, 0);
+		
+		.widget-title {
+			@include font-size(1.2);
+			margin-bottom: 0.25em;
+		}
+		ul {
+			margin-left: 1.5em;
+		}
+	}
+
+	.widget > *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+/* Make sure select elements fit in widgets */
+.widget select {
+	@include max-width;
+}
+
+/* Search widget */
+.widget_search .submit {
+	display: none;
+}
+
+/* =Infinite Scroll
+----------------------------------------------- */
+
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .navigation-paging, /* Older / Newer Posts Navigation (always hidden) */
+.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
+.infinity-end.neverending .site-footer {
+	display: block;
+}

@@ -1,0 +1,90 @@
+/* =Content .entry-content
+----------------------------------------------- */
+.entry-content,
+body#tinymce {
+
+	h2, h3, h4, h5, h6 {
+		color: $hcolor;
+		margin-top: 2em;
+	}
+
+	li {
+		margin-bottom: 0.5em;
+		ul, ol {
+			margin-top: 0.5em;
+		}
+	}
+
+}
+
+/* =Media .entry-content
+----------------------------------------------- */
+.entry-content,
+body#tinymce {
+
+	img.wp-smiley {
+		border: none;
+		margin-bottom: 0;
+		margin-top: 0;
+		padding: 0;
+	}
+
+	img.alignleft,
+	img.alignright,
+	img.aligncenter {
+		@include max-width;
+		@include roundbox;
+		padding: 5px;
+	}
+
+	.wp-caption {
+		margin-bottom: $margin;
+		@include max-width;
+		@include roundbox;
+
+		img[class*="wp-image-"] {
+			display: block;
+			margin: 5px auto;
+			@include max-width( 98% );
+		}
+		.wp-caption-text {
+			margin: 5px;
+			font-size: 75%;
+			color: lighten($text, 20%);
+		}
+	}
+	.wp-caption-text {
+		text-align: center;
+	}
+
+}
+
+/* gallery */
+.site-content .gallery {
+	margin-bottom: $margin;
+	
+	.gallery-item {
+	}
+
+	a img {
+		height: auto;
+		@include max-width( 90% );
+		@include roundbox;
+		padding: 4px;
+	}
+
+	dd {
+		margin: 0;
+	}
+
+	.gallery-caption {
+		font-size: 75%;
+		color: lighten($text, 20%);
+	}
+}
+/*
+.site-content .gallery-columns-4 .gallery-item {
+}
+.site-content .gallery-columns-4 .gallery-item img {
+}
+*/

@@ -1,0 +1,10 @@
+@import 'compass';
+@import 'compass/reset';
+@import 'mixin';
+@import 'global';
+@import 'entry-content';
+
+body#tinymce.wp-editor { 
+	margin: 10px;
+	width: 590px;
+}
